@@ -1,0 +1,59 @@
+
+PHASE_1 "ACQUIRING THE STRING"
+
+
+Description:
+Phase 1 is about giving a string. If the given input string matches the given string (string given by Dr Evil), then bomb at phase 1 is defused. 
+The string used for defusing phase 1 of bomb 003 is "Border relations with Canada have never been better." 
+
+
+1. objdump -d bomb > bomb.s							//diassemble the code of bomb file in assembly form in bomb.s
+
+2. ls										//new file named bomb.s is created 
+
+3. chmod +x bomb								//grants permission to access file
+
+4. strings bomb								//gives all the strings of the bomb
+
+5. gdb bomb									//gdb debugger executes the assembly code
+
+  (gdb) info break								//checks whether the breakpoints or watchpoints are set or not
+  
+  (gdb) break phase_1								//set breakpoint to avoid exploding of bomb when input is 											wrong
+  
+  (gdb) run									//running the program
+  Starting program: /home/Desktop/Assignment_1/bomb003/bomb 
+  Welcome to my fiendish little bomb. You have 6 phases with
+  which to blow yourself up. Have a nice day!
+  let us try									//input any random string
+
+  Breakpoint 1, 0x0000000000400e8d in phase_1 ()					//bomb is not exploding since breakpoint is set
+ 
+  (gdb) disas									//opens assembly file
+  Dump of assembler code for function phase_1:
+  => 0x0000000000400e8d <+0>:	sub    $0x8,%rsp				//creating stack frame with 8 bytes
+     0x0000000000400e91 <+4>:	mov    $0x4023b0,%esi
+     0x0000000000400e96 <+9>:	callq  0x40132b <strings_not_equal>		//input should be string
+     
+     0x0000000000400e9b <+14>:	test   %eax,%eax				//compares the input string with answer string
+     
+     0x0000000000400e9d <+16>:	je     0x400ea4 <phase_1+23> 			//if both strings are equal then jump to line <+23> 
+     
+     0x0000000000400e9f <+18>:	callq  0x40142a <explode_bomb>		//if both strings are not equal then bomb 												will be exploded
+     0x0000000000400ea4 <+23>:	add    $0x8,%rsp
+     0x0000000000400ea8 <+27>:	retq   
+  End of assembler dump.
+
+  (gdb) x/s 0x4023b0								//displays the value stored at the specified memory address in string form.
+  0x4023b0:	"Border relations with Canada have never been better."
+
+  (gdb) delete break								//removes all the breakpoints 
+ 
+  (gdb) run
+  Starting program: /home/Desktop/Assignment_1/bomb003/bomb 
+  Welcome to my fiendish little bomb. You have 6 phases with
+  which to blow yourself up. Have a nice day!
+  Border relations with Canada have never been better.				//bomb at phase_1 is defused with this string 
+  Phase 1 defused. How about the next one?					
+
+ 
