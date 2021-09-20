@@ -97,16 +97,15 @@ k6             0x0                 0
 k7             0x0                 0
 
 output
-(gdb) run
-Starting program: /home/dorji/Downloads/Assignment 1/bomb003/bomb 
+(gdb) run phase_1.txt   //string of phase_1 is saved inside the phase_1.txt file.
+Starting program: /home/gcit/Desktop/Assignment 1_2/Assignment 1/bomb003/bomb phase_1.txt
 Welcome to my fiendish little bomb. You have 6 phases with
 which to blow yourself up. Have a nice day!
-Border relations with Canada have never been better.
 Phase 1 defused. How about the next one?
 0 1 1 2 3 5
 That's number 2.  Keep going!
 0 63
 Halfway there!
 
-ossible inputs
+possible inputs
 (0 63) (1 198) (2 789) (3 198) (4 58) (5 624) (6 267) (7 128)
