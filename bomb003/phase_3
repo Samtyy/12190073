@@ -1,3 +1,18 @@
+
+PHASE_3 
+
+Discription:
+
+Phase 3 is all about giving two integers and it checks whether the given two inputs are correct or not. If it is correct then the phase_3 bomb will be diffused or else it will explode.
+
+//first of all: 
+//1. open gdb bomb 
+//2. set break-point ("b phase_3") 
+//3. run the phase_1.txt file 
+//4. input phase_2 numbers (first six fibonacci series) 
+//5. give some random inputs and,
+//6. open the dissemble to show assembly code in phase_3
+
 Dump of assembler code for function phase_3:
    0x0000000000400f15 <+0>:	sub    $0x18,%rsp
    0x0000000000400f19 <+4>:	mov    %fs:0x28,%rax
@@ -6,7 +21,7 @@ Dump of assembler code for function phase_3:
    0x0000000000400f29 <+20>:	lea    0x4(%rsp),%rcx
    0x0000000000400f2e <+25>:	mov    %rsp,%rdx
    0x0000000000400f31 <+28>:	mov    $0x4025af,%esi
-   0x0000000000400f36 <+33>:	call   0x400bb0 <__isoc99_sscanf@plt>  //fetches the two user input.let the input be(0 87)
+   0x0000000000400f36 <+33>:	call   0x400bb0 <__isoc99_sscanf@plt>  //fetches the two user input.let the input be(0 75)
    0x0000000000400f3b <+38>:	cmp    $0x1,%eax                       //compare frist integer with the value of %eax 
    0x0000000000400f3e <+41>:	jg     0x400f45 <phase_3+48>           //if frist integer is geater than the value stored in the %eax then it jumps to +48
    0x0000000000400f40 <+43>:	call   0x40142a <explode_bomb>         //else bomb explodes
